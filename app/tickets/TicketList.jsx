@@ -12,6 +12,8 @@ async function getTickets() {
 }
 
 async function TicketList() {
+  await new Promise(resolve => setTimeout(resolve, 1750))
+
   const tickets = await getTickets();
 
   return (
