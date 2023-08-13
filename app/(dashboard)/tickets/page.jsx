@@ -1,6 +1,10 @@
 import React from "react";
 import TicketList from "./TicketList";
 
+export const metadata = {
+  title: "next-new | tickets",
+};
+
 export default async function Tickets() {
  
   return (

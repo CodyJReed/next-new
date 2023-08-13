@@ -1,8 +1,7 @@
 import { Suspense } from "react";
-import Navbar from "./components/Navbar";
 import "./globals.css";
 import { Rubik } from "next/font/google";
-import Loading from "./loading";
+import Loading from "./(dashboard)/loading";
 
 const rubik = Rubik({ subsets: ["latin"] });
 
@@ -15,7 +14,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={rubik.className}>
-        <Navbar />
         <Suspense fallback={<Loading />}>{children}</Suspense>
       </body>
     </html>
