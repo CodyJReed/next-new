@@ -9,6 +9,7 @@ export default function Loading() {
         src="/vercel.svg"
         width={150}
         height={150}
+        alt="loading"
       />
       <h2 className="text-primary text-xl">Loading...</h2>
     </main>
