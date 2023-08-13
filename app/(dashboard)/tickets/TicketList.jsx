@@ -1,20 +1,22 @@
-import React from "react";
 import Link from "next/link";
+import { cookies } from 'next/headers'
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 
 async function getTickets() {
-  const res = await fetch("http://localhost:4000/tickets", {
-    next: {
-      revalidate: 0,
-    },
-  });
+  const supabase = createServerComponentClient({ cookies })
 
-  return res.json();
+  const { data, error } = await supabase.from('tickets')
+    .select()
+
+  if (error) {
+    console.log(error.message)
+  }
+
+  return data
 }
 
-async function TicketList() {
-  await new Promise(resolve => setTimeout(resolve, 1750))
-
-  const tickets = await getTickets();
+export default async function TicketList() {
+  const tickets = await getTickets()
 
   return (
     <>
@@ -33,5 +35,3 @@ async function TicketList() {
     </>
   );
 }
-
-export default TicketList;
