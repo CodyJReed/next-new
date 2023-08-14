@@ -13,9 +13,13 @@ export async function addTicket(formData) {
     data: { session },
   } = await supabase.auth.getSession();
 
-  await supabase
+  const {error} = await supabase
     .from("tickets")
     .insert({ ...ticket, user_email: session.user.email });
+
+    if (error) {
+      throw new Error("Big BooBoo!!!! 'w' ")
+    }
 
   revalidatePath("/tickets");
   redirect("/tickets");
