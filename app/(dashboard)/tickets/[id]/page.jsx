@@ -20,16 +20,6 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export async function generateStaticParams() {
-  const res = await fetch(`http://localhost:4000/tickets`);
-
-  const tickets = await res.json();
-
-  return tickets.map((t) => ({
-    id: t.id,
-  }));
-}
-
 async function getTicket(id) {
   const supabase = createServerComponentClient({ cookies });
 
